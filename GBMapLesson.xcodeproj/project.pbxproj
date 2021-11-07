@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F122D9DD64024A9E677664F /* Pods_GBMapLesson.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB05821178EBDDA955567B7E /* Pods_GBMapLesson.framework */; };
 		79533C012737EFC400C955E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79533C002737EFC400C955E7 /* AppDelegate.swift */; };
 		79533C032737EFC400C955E7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79533C022737EFC400C955E7 /* SceneDelegate.swift */; };
 		79533C052737EFC400C955E7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79533C042737EFC400C955E7 /* ViewController.swift */; };
@@ -24,6 +25,9 @@
 		79533C092737EFC700C955E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		79533C0C2737EFC700C955E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		79533C0E2737EFC700C955E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8E82BD4ECCDBBE679D886BEB /* Pods-GBMapLesson.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GBMapLesson.debug.xcconfig"; path = "Target Support Files/Pods-GBMapLesson/Pods-GBMapLesson.debug.xcconfig"; sourceTree = "<group>"; };
+		A13A3E76E91576F3FB18DABA /* Pods-GBMapLesson.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GBMapLesson.release.xcconfig"; path = "Target Support Files/Pods-GBMapLesson/Pods-GBMapLesson.release.xcconfig"; sourceTree = "<group>"; };
+		BB05821178EBDDA955567B7E /* Pods_GBMapLesson.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GBMapLesson.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +35,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F122D9DD64024A9E677664F /* Pods_GBMapLesson.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4CE2C419BC3A4A2C90174DD0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BB05821178EBDDA955567B7E /* Pods_GBMapLesson.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		79533BF42737EFC400C955E7 = {
 			isa = PBXGroup;
 			children = (
 				79533BFF2737EFC400C955E7 /* GBMapLesson */,
 				79533BFE2737EFC400C955E7 /* Products */,
+				FAD294ACA8F45791F93E72B6 /* Pods */,
+				4CE2C419BC3A4A2C90174DD0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +82,16 @@
 			path = GBMapLesson;
 			sourceTree = "<group>";
 		};
+		FAD294ACA8F45791F93E72B6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8E82BD4ECCDBBE679D886BEB /* Pods-GBMapLesson.debug.xcconfig */,
+				A13A3E76E91576F3FB18DABA /* Pods-GBMapLesson.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +99,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 79533C112737EFC700C955E7 /* Build configuration list for PBXNativeTarget "GBMapLesson" */;
 			buildPhases = (
+				62BF806C2C001956CEA1CF9B /* [CP] Check Pods Manifest.lock */,
 				79533BF92737EFC400C955E7 /* Sources */,
 				79533BFA2737EFC400C955E7 /* Frameworks */,
 				79533BFB2737EFC400C955E7 /* Resources */,
+				1445ACA8AE8043F5F63171DE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -132,6 +159,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1445ACA8AE8043F5F63171DE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GBMapLesson/Pods-GBMapLesson-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GBMapLesson/Pods-GBMapLesson-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GBMapLesson/Pods-GBMapLesson-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		62BF806C2C001956CEA1CF9B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GBMapLesson-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		79533BF92737EFC400C955E7 /* Sources */ = {
@@ -284,6 +353,7 @@
 		};
 		79533C122737EFC700C955E7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E82BD4ECCDBBE679D886BEB /* Pods-GBMapLesson.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -312,6 +382,7 @@
 		};
 		79533C132737EFC700C955E7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A13A3E76E91576F3FB18DABA /* Pods-GBMapLesson.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
