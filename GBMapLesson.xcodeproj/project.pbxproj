@@ -97,6 +97,7 @@
 				79533BFA2737EFC400C955E7 /* Frameworks */,
 				79533BFB2737EFC400C955E7 /* Resources */,
 				1445ACA8AE8043F5F63171DE /* [CP] Copy Pods Resources */,
+				59BACF58D54C770426668D57 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -168,6 +169,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GBMapLesson/Pods-GBMapLesson-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		59BACF58D54C770426668D57 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GBMapLesson/Pods-GBMapLesson-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GBMapLesson/Pods-GBMapLesson-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GBMapLesson/Pods-GBMapLesson-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		62BF806C2C001956CEA1CF9B /* [CP] Check Pods Manifest.lock */ = {
