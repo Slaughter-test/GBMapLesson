@@ -2939,3 +2939,56 @@ Pods/Target Support Files/Realm/Realm-xcframeworks.sh
 Pods/Target Support Files/Realm/Realm.debug.xcconfig
 Pods/Target Support Files/Realm/Realm.modulemap
 Pods/Target Support Files/Realm/Realm.release.xcconfig
+Pods/Pods.xcodeproj/xcuserdata/urijegorov.xcuserdatad/xcschemes/RealmSwift.xcscheme
+Pods/RealmSwift/build.sh
+Pods/RealmSwift/LICENSE
+Pods/RealmSwift/README.md
+Pods/RealmSwift/RealmSwift/Aliases.swift
+Pods/RealmSwift/RealmSwift/AnyRealmValue.swift
+Pods/RealmSwift/RealmSwift/App.swift
+Pods/RealmSwift/RealmSwift/BSON.swift
+Pods/RealmSwift/RealmSwift/Combine.swift
+Pods/RealmSwift/RealmSwift/Decimal128.swift
+Pods/RealmSwift/RealmSwift/EmbeddedObject.swift
+Pods/RealmSwift/RealmSwift/Error.swift
+Pods/RealmSwift/RealmSwift/LinkingObjects.swift
+Pods/RealmSwift/RealmSwift/List.swift
+Pods/RealmSwift/RealmSwift/Map.swift
+Pods/RealmSwift/RealmSwift/Migration.swift
+Pods/RealmSwift/RealmSwift/MongoClient.swift
+Pods/RealmSwift/RealmSwift/MutableSet.swift
+Pods/RealmSwift/RealmSwift/Object.swift
+Pods/RealmSwift/RealmSwift/ObjectId.swift
+Pods/RealmSwift/RealmSwift/ObjectiveCSupport+AnyRealmValue.swift
+Pods/RealmSwift/RealmSwift/ObjectiveCSupport+BSON.swift
+Pods/RealmSwift/RealmSwift/ObjectiveCSupport+Sync.swift
+Pods/RealmSwift/RealmSwift/ObjectiveCSupport.swift
+Pods/RealmSwift/RealmSwift/ObjectSchema.swift
+Pods/RealmSwift/RealmSwift/Optional.swift
+Pods/RealmSwift/RealmSwift/PersistedProperty.swift
+Pods/RealmSwift/RealmSwift/Property.swift
+Pods/RealmSwift/RealmSwift/Realm.swift
+Pods/RealmSwift/RealmSwift/RealmCollection.swift
+Pods/RealmSwift/RealmSwift/RealmConfiguration.swift
+Pods/RealmSwift/RealmSwift/RealmKeyedCollection.swift
+Pods/RealmSwift/RealmSwift/RealmProperty.swift
+Pods/RealmSwift/RealmSwift/Results.swift
+Pods/RealmSwift/RealmSwift/Schema.swift
+Pods/RealmSwift/RealmSwift/SortDescriptor.swift
+Pods/RealmSwift/RealmSwift/SwiftUI.swift
+Pods/RealmSwift/RealmSwift/Sync.swift
+Pods/RealmSwift/RealmSwift/ThreadSafeReference.swift
+Pods/RealmSwift/RealmSwift/Util.swift
+Pods/RealmSwift/RealmSwift/Impl/BasicTypes.swift
+Pods/RealmSwift/RealmSwift/Impl/CollectionAccess.swift
+Pods/RealmSwift/RealmSwift/Impl/ComplexTypes.swift
+Pods/RealmSwift/RealmSwift/Impl/Persistable.swift
+Pods/RealmSwift/RealmSwift/Impl/PropertyAccessors.swift
+Pods/RealmSwift/RealmSwift/Impl/SchemaDiscovery.swift
+Pods/Target Support Files/RealmSwift/RealmSwift-dummy.m
+Pods/Target Support Files/RealmSwift/RealmSwift-Info.plist
+Pods/Target Support Files/RealmSwift/RealmSwift-prefix.pch
+Pods/Target Support Files/RealmSwift/RealmSwift-umbrella.h
+Pods/Target Support Files/RealmSwift/RealmSwift.debug.xcconfig
+Pods/Target Support Files/RealmSwift/RealmSwift.modulemap
+Pods/Target Support Files/RealmSwift/RealmSwift.release.xcconfig

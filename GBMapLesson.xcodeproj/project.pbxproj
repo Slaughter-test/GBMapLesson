@@ -12,6 +12,8 @@
 		79533C052737EFC400C955E7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79533C042737EFC400C955E7 /* ViewController.swift */; };
 		79533C0A2737EFC700C955E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79533C092737EFC700C955E7 /* Assets.xcassets */; };
 		79533C0D2737EFC700C955E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79533C0B2737EFC700C955E7 /* LaunchScreen.storyboard */; };
+		79F4F8FF27416AE200B35BEE /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F4F8FE27416AE200B35BEE /* RealmService.swift */; };
+		79F4F9022741819900B35BEE /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F4F9012741819900B35BEE /* Location.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +23,8 @@
 		79533C092737EFC700C955E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		79533C0C2737EFC700C955E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		79533C0E2737EFC700C955E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		79F4F8FE27416AE200B35BEE /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		79F4F9012741819900B35BEE /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		8E82BD4ECCDBBE679D886BEB /* Pods-GBMapLesson.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GBMapLesson.debug.xcconfig"; path = "Target Support Files/Pods-GBMapLesson/Pods-GBMapLesson.debug.xcconfig"; sourceTree = "<group>"; };
 		A13A3E76E91576F3FB18DABA /* Pods-GBMapLesson.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GBMapLesson.release.xcconfig"; path = "Target Support Files/Pods-GBMapLesson/Pods-GBMapLesson.release.xcconfig"; sourceTree = "<group>"; };
 		BB05821178EBDDA955567B7E /* Pods_GBMapLesson.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GBMapLesson.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,13 +71,23 @@
 		79533BFF2737EFC400C955E7 /* GBMapLesson */ = {
 			isa = PBXGroup;
 			children = (
+				79F4F9002741818100B35BEE /* Model */,
 				79533C002737EFC400C955E7 /* AppDelegate.swift */,
 				79533C042737EFC400C955E7 /* ViewController.swift */,
 				79533C092737EFC700C955E7 /* Assets.xcassets */,
 				79533C0B2737EFC700C955E7 /* LaunchScreen.storyboard */,
 				79533C0E2737EFC700C955E7 /* Info.plist */,
+				79F4F8FE27416AE200B35BEE /* RealmService.swift */,
 			);
 			path = GBMapLesson;
+			sourceTree = "<group>";
+		};
+		79F4F9002741818100B35BEE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				79F4F9012741819900B35BEE /* Location.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		FAD294ACA8F45791F93E72B6 /* Pods */ = {
@@ -218,6 +232,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				79533C052737EFC400C955E7 /* ViewController.swift in Sources */,
+				79F4F8FF27416AE200B35BEE /* RealmService.swift in Sources */,
+				79F4F9022741819900B35BEE /* Location.swift in Sources */,
 				79533C012737EFC400C955E7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -363,6 +379,7 @@
 				DEVELOPMENT_TEAM = 72QPQ3P58F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GBMapLesson/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Соизволите ли вы разрешить нам следить за вашей локацией?";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Соизволите ли вы разрешить нам следить за вашей локацией?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -393,6 +410,7 @@
 				DEVELOPMENT_TEAM = 72QPQ3P58F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GBMapLesson/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Соизволите ли вы разрешить нам следить за вашей локацией?";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Соизволите ли вы разрешить нам следить за вашей локацией?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

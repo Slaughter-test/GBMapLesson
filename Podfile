@@ -8,5 +8,6 @@ target 'GBMapLesson' do
   # Pods for GBMapLesson
   pod 'GoogleMaps', '5.2.0'
   pod 'Realm'
+  pod 'RealmSwift'
 
 end
