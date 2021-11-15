@@ -48,22 +48,29 @@ class ViewController: UIViewController {
     @objc
     func stopCreatingPath(_ sender: Any) {
         locationManager?.stopUpdatingLocation()
+        RealmService.shared.deleteAll()
         guard let pointsCount = routePath?.count() else { return }
+        var locations = Array<Location>()
         for i in 0..<pointsCount {
             guard let point = routePath?.coordinate(at: i) else { return }
-            RealmService.shared.saveLocations(data: point, key: "LastLocation")
+            let location = Location()
+            location.longitude = point.longitude
+            location.latitude = point.latitude
+            location._number = Int(i)
+            locations.append(location)
         }
+        RealmService.shared.saveList(locations)
         mapView.clear()
     }
     
     @objc
     func loadPreviousRoute(_ sender: Any) {
         locationManager?.stopUpdatingLocation()
-        let locations = RealmService.shared.loadLocations(key: "LastLocation")
+        let locations = RealmService.shared.loadListOfLocation()
         routePath?.removeAllCoordinates()
         for i in 0..<locations.count {
             let coordinate = CLLocationCoordinate2D(latitude: locations[i].latitude, longitude: locations[i].longitude)
-            routePath?.insert(coordinate, at: UInt(locations[i].number))
+            routePath?.insert(coordinate, at: UInt(locations[i]._number))
         }
         route?.map = mapView
         guard let routePath = routePath else {
@@ -71,7 +78,7 @@ class ViewController: UIViewController {
         }
 
         let bounds = GMSCoordinateBounds(path: routePath)
-        mapView.animate(with: GMSCameraUpdate.fit(bounds, with: UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40)))
+        mapView.animate(with: GMSCameraUpdate.fit(bounds))
         inLoadedState = true
     }
     

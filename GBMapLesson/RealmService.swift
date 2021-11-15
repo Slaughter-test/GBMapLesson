@@ -11,7 +11,7 @@ import CoreLocation
 
 final class RealmService {
     
-    let realm = try! Realm()
+    let configuration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
     
     static var shared: RealmService = {
         let instance = RealmService()
@@ -21,33 +21,36 @@ final class RealmService {
     
     private init() {}
     
-    func saveLocations(data: Array<CLLocationCoordinate2D>, key: String) {
-        var dataToSave = Array<Location>()
-        for i in 0..<data.count {
-            let location = Location()
-            location.latitude = data[i].latitude
-            location.longitude = data[i].longitude
-            location.key = key
-            location.number = i
-            dataToSave.append(location)
-        }
-        try! realm.write {
-            realm.add(dataToSave, update: .all)
+    func saveList(_ list: [Object]) {
+        do {
+            let realm = try Realm(configuration: configuration)
+            realm.beginWrite()
+            realm.add(list, update: .all)
+            try realm.commitWrite()
+        } catch {
+            print(error)
         }
     }
     
-    func saveLocations(data: CLLocationCoordinate2D, key: String) {
-        let location = Location()
-        location.latitude = data.latitude
-        location.longitude = data.longitude
-        location.key = key
-        try! realm.write {
-            realm.add(location)
+    
+    func loadListOfLocation() -> Array<Location> {
+        do {
+            let realm = try Realm(configuration: configuration)
+            return Array(realm.objects(Location.self))
+        } catch {
+            print(error)
+            return Array<Location>()
         }
     }
     
-    func loadLocations(key: String) -> Array<Location> {
-        return realm.objects(Location.self).filter { $0.key == key }
+    func deleteAll() {
+        do {
+            let realm = try Realm(configuration: configuration)
+            realm.beginWrite()
+            realm.deleteAll()
+            try realm.commitWrite()
+        } catch {
+            print(error)
+        }
     }
-    
 }

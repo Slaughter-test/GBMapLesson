@@ -9,8 +9,8 @@ import Foundation
 import RealmSwift
 
 class Location: Object {
-    @objc dynamic var key = "CurrentLocation"
-    @objc dynamic var number = 0
-    @objc dynamic var latitude = 0.0
-    @objc dynamic var longitude = 0.0
+    @Persisted(primaryKey: true) var _number: Int
+    @Persisted var latitude: Double
+    @Persisted var longitude: Double 
+    
 }
