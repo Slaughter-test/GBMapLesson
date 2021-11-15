@@ -37,11 +37,13 @@ class ViewController: UIViewController {
         currentLocation = location
         updateCamera(location: location)
         createMark(location: location)
+        inLoadedState = false
     }
     
     @objc
     func createPath(_ sender: Any) {
         setupRoute()
+        inLoadedState = false
         locationManager?.startUpdatingLocation()
     }
     
@@ -76,7 +78,7 @@ class ViewController: UIViewController {
         guard let routePath = routePath else {
             return
         }
-
+        
         let bounds = GMSCoordinateBounds(path: routePath)
         mapView.animate(with: GMSCameraUpdate.fit(bounds))
         inLoadedState = true
@@ -92,6 +94,7 @@ class ViewController: UIViewController {
         marker.map = mapView
         if inLoadedState == true {
             removeRoute()
+            inLoadedState = false
         }
     }
     
@@ -155,11 +158,13 @@ class ViewController: UIViewController {
 extension ViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else { return }
-        routePath?.add(location.coordinate)
-        route?.path = routePath
-        let position = GMSCameraPosition.camera(withTarget: location.coordinate, zoom: 15)
-        mapView.animate(to: position)
+        if inLoadedState == true { } else {
+            guard let location = locations.last else { return }
+            routePath?.add(location.coordinate)
+            route?.path = routePath
+            let position = GMSCameraPosition.camera(withTarget: location.coordinate, zoom: 15)
+            mapView.animate(to: position)
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
