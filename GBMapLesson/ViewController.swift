@@ -60,9 +60,9 @@ class ViewController: UIViewController {
     func loadPreviousRoute(_ sender: Any) {
         locationManager?.stopUpdatingLocation()
         let locations = RealmService.shared.loadLocations(key: "LastLocation")
+        routePath?.removeAllCoordinates()
         for i in 0..<locations.count {
             let coordinate = CLLocationCoordinate2D(latitude: locations[i].latitude, longitude: locations[i].longitude)
-            routePath?.removeAllCoordinates()
             routePath?.insert(coordinate, at: UInt(locations[i].number))
         }
         route?.map = mapView
