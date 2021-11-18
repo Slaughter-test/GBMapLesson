@@ -8,21 +8,31 @@
 
 /* Begin PBXBuildFile section */
 		3F122D9DD64024A9E677664F /* Pods_GBMapLesson.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB05821178EBDDA955567B7E /* Pods_GBMapLesson.framework */; };
+		794D1AE82746ACBF009D981D /* PrivacyProtectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794D1AE72746ACBF009D981D /* PrivacyProtectionViewController.swift */; };
 		79533C012737EFC400C955E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79533C002737EFC400C955E7 /* AppDelegate.swift */; };
 		79533C052737EFC400C955E7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79533C042737EFC400C955E7 /* ViewController.swift */; };
 		79533C0A2737EFC700C955E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79533C092737EFC700C955E7 /* Assets.xcassets */; };
 		79533C0D2737EFC700C955E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79533C0B2737EFC700C955E7 /* LaunchScreen.storyboard */; };
+		798FFF2627468C2A002881FF /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798FFF2527468C2A002881FF /* Router.swift */; };
+		79B1A6292745626700F1AC77 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B1A6282745626700F1AC77 /* User.swift */; };
+		79B1A62B27456F0000F1AC77 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B1A62A27456EFF00F1AC77 /* LoginViewController.swift */; };
+		79B1A631274576BB00F1AC77 /* AutoLayoutDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B1A630274576BB00F1AC77 /* AutoLayoutDSL.swift */; };
 		79F4F8FF27416AE200B35BEE /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F4F8FE27416AE200B35BEE /* RealmService.swift */; };
 		79F4F9022741819900B35BEE /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F4F9012741819900B35BEE /* Location.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		794D1AE72746ACBF009D981D /* PrivacyProtectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyProtectionViewController.swift; sourceTree = "<group>"; };
 		79533BFD2737EFC400C955E7 /* GBMapLesson.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GBMapLesson.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79533C002737EFC400C955E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		79533C042737EFC400C955E7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		79533C092737EFC700C955E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		79533C0C2737EFC700C955E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		79533C0E2737EFC700C955E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		798FFF2527468C2A002881FF /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		79B1A6282745626700F1AC77 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		79B1A62A27456EFF00F1AC77 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		79B1A630274576BB00F1AC77 /* AutoLayoutDSL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayoutDSL.swift; sourceTree = "<group>"; };
 		79F4F8FE27416AE200B35BEE /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		79F4F9012741819900B35BEE /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		8E82BD4ECCDBBE679D886BEB /* Pods-GBMapLesson.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GBMapLesson.debug.xcconfig"; path = "Target Support Files/Pods-GBMapLesson/Pods-GBMapLesson.debug.xcconfig"; sourceTree = "<group>"; };
@@ -71,21 +81,42 @@
 		79533BFF2737EFC400C955E7 /* GBMapLesson */ = {
 			isa = PBXGroup;
 			children = (
+				798FFF2427468C18002881FF /* Router */,
+				79B1A62F274576A700F1AC77 /* AutoLayout */,
 				79F4F9002741818100B35BEE /* Model */,
 				79533C002737EFC400C955E7 /* AppDelegate.swift */,
 				79533C042737EFC400C955E7 /* ViewController.swift */,
+				79B1A62A27456EFF00F1AC77 /* LoginViewController.swift */,
 				79533C092737EFC700C955E7 /* Assets.xcassets */,
 				79533C0B2737EFC700C955E7 /* LaunchScreen.storyboard */,
 				79533C0E2737EFC700C955E7 /* Info.plist */,
 				79F4F8FE27416AE200B35BEE /* RealmService.swift */,
+				794D1AE72746ACBF009D981D /* PrivacyProtectionViewController.swift */,
 			);
 			path = GBMapLesson;
+			sourceTree = "<group>";
+		};
+		798FFF2427468C18002881FF /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				798FFF2527468C2A002881FF /* Router.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		79B1A62F274576A700F1AC77 /* AutoLayout */ = {
+			isa = PBXGroup;
+			children = (
+				79B1A630274576BB00F1AC77 /* AutoLayoutDSL.swift */,
+			);
+			path = AutoLayout;
 			sourceTree = "<group>";
 		};
 		79F4F9002741818100B35BEE /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				79F4F9012741819900B35BEE /* Location.swift */,
+				79B1A6282745626700F1AC77 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -231,10 +262,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79B1A62B27456F0000F1AC77 /* LoginViewController.swift in Sources */,
+				79B1A631274576BB00F1AC77 /* AutoLayoutDSL.swift in Sources */,
 				79533C052737EFC400C955E7 /* ViewController.swift in Sources */,
 				79F4F8FF27416AE200B35BEE /* RealmService.swift in Sources */,
 				79F4F9022741819900B35BEE /* Location.swift in Sources */,
+				79B1A6292745626700F1AC77 /* User.swift in Sources */,
 				79533C012737EFC400C955E7 /* AppDelegate.swift in Sources */,
+				794D1AE82746ACBF009D981D /* PrivacyProtectionViewController.swift in Sources */,
+				798FFF2627468C2A002881FF /* Router.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

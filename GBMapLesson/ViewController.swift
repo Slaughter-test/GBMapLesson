@@ -8,13 +8,23 @@
 import UIKit
 import GoogleMaps
 
+final class MapViewModel {
+
+    let value: Int
+
+    init(value: Int) {
+        self.value = value
+    }
+
+}
+
 class ViewController: UIViewController {
     
     //MARK: - Variables
+    var viewModel: MapViewModel?
     var mapView: GMSMapView!
     var route: GMSPolyline?
     var routePath: GMSMutablePath?
-    var inLoadedState: Bool?
     var locationManager: CLLocationManager?
     var currentLocation = CLLocationCoordinate2D(latitude: 59.939095, longitude: 30.315868)
     
@@ -27,6 +37,10 @@ class ViewController: UIViewController {
         setupConstraints()
     }
     
+    func configure(viewModel: MapViewModel) {
+        self.viewModel = viewModel
+    }
+    
     //MARK: - User Actions
     @objc
     func updateCurrentLocation(_ sender: Any) {
@@ -37,20 +51,18 @@ class ViewController: UIViewController {
         currentLocation = location
         updateCamera(location: location)
         createMark(location: location)
-        inLoadedState = false
     }
     
     @objc
     func createPath(_ sender: Any) {
         setupRoute()
-        inLoadedState = false
         locationManager?.startUpdatingLocation()
     }
     
     @objc
     func stopCreatingPath(_ sender: Any) {
         locationManager?.stopUpdatingLocation()
-        RealmService.shared.deleteAll()
+        RealmService.shared.deleteAllLocations()
         guard let pointsCount = routePath?.count() else { return }
         var locations = Array<Location>()
         for i in 0..<pointsCount {
@@ -67,21 +79,21 @@ class ViewController: UIViewController {
     
     @objc
     func loadPreviousRoute(_ sender: Any) {
+        let newRoute = GMSPolyline()
+        let newPath = GMSMutablePath()
+        newRoute.strokeColor = .blue
+        newRoute.strokeWidth = 10.0
         locationManager?.stopUpdatingLocation()
         let locations = RealmService.shared.loadListOfLocation()
         routePath?.removeAllCoordinates()
         for i in 0..<locations.count {
             let coordinate = CLLocationCoordinate2D(latitude: locations[i].latitude, longitude: locations[i].longitude)
-            routePath?.insert(coordinate, at: UInt(locations[i]._number))
+            newPath.insert(coordinate, at: UInt(locations[i]._number))
         }
-        route?.map = mapView
-        guard let routePath = routePath else {
-            return
-        }
-        
-        let bounds = GMSCoordinateBounds(path: routePath)
+        newRoute.path = newPath
+        newRoute.map = mapView
+        let bounds = GMSCoordinateBounds(path: newPath)
         mapView.animate(with: GMSCameraUpdate.fit(bounds))
-        inLoadedState = true
     }
     
     //MARK: - View Actions
@@ -92,10 +104,6 @@ class ViewController: UIViewController {
     private func createMark(location: CLLocationCoordinate2D) {
         let marker = GMSMarker(position: location)
         marker.map = mapView
-        if inLoadedState == true {
-            removeRoute()
-            inLoadedState = false
-        }
     }
     
     //MARK: - Configs
@@ -154,17 +162,15 @@ class ViewController: UIViewController {
     }
     
 }
-
+//MARK: - CLLocationManagerDelegate
 extension ViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if inLoadedState == true { } else {
             guard let location = locations.last else { return }
             routePath?.add(location.coordinate)
             route?.path = routePath
             let position = GMSCameraPosition.camera(withTarget: location.coordinate, zoom: 15)
             mapView.animate(to: position)
-        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

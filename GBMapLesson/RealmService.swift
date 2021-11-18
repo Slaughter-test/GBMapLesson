@@ -32,6 +32,16 @@ final class RealmService {
         }
     }
     
+    func saveObject(_ object: Object) {
+        do {
+            let realm = try Realm(configuration: configuration)
+            realm.beginWrite()
+            realm.add(object, update: .modified)
+            try realm.commitWrite()
+        } catch {
+            print(error)
+        }
+    }
     
     func loadListOfLocation() -> Array<Location> {
         do {
@@ -43,11 +53,50 @@ final class RealmService {
         }
     }
     
-    func deleteAll() {
+    func userCredentialsExists(login: String) -> Bool {
+        do {
+            let realm = try Realm(configuration: configuration)
+            let users = realm.objects(User.self).map {$0}
+            var result = false
+            for user in users {
+                if user._login == login {
+                    result = true
+                } else {
+                    result = false
+                }
+            }
+            return result
+        } catch {
+            print(error)
+            return false
+        }
+    }
+    
+    func authorization(login: String, password: String) -> Bool {
+        do {
+            let realm = try Realm(configuration: configuration)
+            let users = realm.objects(User.self)
+            var result = false
+            for user in users {
+                if user._login == login && user.password == password {
+                    result = true
+                } else {
+                    result = false
+                }
+            }
+            return result
+        } catch {
+            print(error)
+            return false
+        }
+    }
+    
+    func deleteAllLocations() {
         do {
             let realm = try Realm(configuration: configuration)
             realm.beginWrite()
-            realm.deleteAll()
+            let locations = realm.objects(Location.self)
+            realm.delete(locations)
             try realm.commitWrite()
         } catch {
             print(error)
