@@ -22,14 +22,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
-        let secretViewController = PrivacyProtectionViewController()
-        window?.rootViewController = secretViewController
-        window?.makeKeyAndVisible()
+        showPrivacyProtectionWindow()
     }
     
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-        setMainApplication()
+        hidePrivacyProtectionWindow()
     }
     
     private func setMainApplication() {
@@ -42,6 +40,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
+    
+    private var privacyProtectionWindow: UIWindow?
+
+        private func showPrivacyProtectionWindow() {
+            guard let windowScene = self.window?.windowScene else {
+                return
+            }
+
+            privacyProtectionWindow = UIWindow(windowScene: windowScene)
+            privacyProtectionWindow?.rootViewController = PrivacyProtectionViewController()
+            privacyProtectionWindow?.windowLevel = .alert + 1
+            privacyProtectionWindow?.makeKeyAndVisible()
+        }
+
+        private func hidePrivacyProtectionWindow() {
+            privacyProtectionWindow?.isHidden = true
+            privacyProtectionWindow = nil
+        }
     
 }
 
