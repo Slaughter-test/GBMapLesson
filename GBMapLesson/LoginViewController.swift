@@ -7,6 +7,8 @@
 
 import Foundation
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class LoginViewController: UIViewController {
   
@@ -21,7 +23,7 @@ final class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        
+        configureLoginBindings()
         router = ViewControllerRouter(viewController: self)
     }
     
@@ -124,5 +126,23 @@ final class LoginViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    func configureLoginBindings() {
+            Observable
+                .combineLatest(
+                    loginInput.rx.text,
+                    passwordInput.rx.text
+                )
+                .map { login, password in
+                    return !(login ?? "").isEmpty && (password ?? "").count >= 6
+                }
+                .bind { [weak loginButton] inputFilled in
+                loginButton?.isEnabled = inputFilled
+                    if inputFilled == true {
+                        loginButton?.alpha = 1
+                    } else {
+                        loginButton?.alpha = 0.5
+                    }
+            }
+        }
     
 }
