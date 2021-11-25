@@ -17,17 +17,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // GoogleMaps API Key
         GMSServices.provideAPIKey("AIzaSyBagFDgBhRGy5UMIqCzupvD2I-KisUQiHE")
         
+        setMainApplication()
+        return true
+    }
+    
+    func applicationWillResignActive(_ application: UIApplication) {
+        showPrivacyProtectionWindow()
+    }
+    
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        hidePrivacyProtectionWindow()
+    }
+    
+    private func setMainApplication() {
         // Launch Application
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = .white
-        let viewController = ViewController()
-        viewController.title = "Map"
-        let navigationController = UINavigationController(rootViewController: viewController)
+        let loginViewController = LoginViewController()
+        let navigationController = UINavigationController(rootViewController: loginViewController)
         navigationController.setNavigationBarHidden(false, animated: true)
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
-        return true
     }
+    
+    private var privacyProtectionWindow: UIWindow?
+
+        private func showPrivacyProtectionWindow() {
+            guard let windowScene = self.window?.windowScene else {
+                return
+            }
+
+            privacyProtectionWindow = UIWindow(windowScene: windowScene)
+            privacyProtectionWindow?.rootViewController = PrivacyProtectionViewController()
+            privacyProtectionWindow?.windowLevel = .alert + 1
+            privacyProtectionWindow?.makeKeyAndVisible()
+        }
+
+        private func hidePrivacyProtectionWindow() {
+            privacyProtectionWindow?.isHidden = true
+            privacyProtectionWindow = nil
+        }
     
 }
 

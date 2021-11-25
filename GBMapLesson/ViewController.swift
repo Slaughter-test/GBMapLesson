@@ -8,10 +8,23 @@
 import UIKit
 import GoogleMaps
 
+final class MapViewModel {
+
+    let value: Int
+
+    init(value: Int) {
+        self.value = value
+    }
+
+}
+
 class ViewController: UIViewController {
     
     //MARK: - Variables
+    var viewModel: MapViewModel?
     var mapView: GMSMapView!
+    var route: GMSPolyline?
+    var routePath: GMSMutablePath?
     var locationManager: CLLocationManager?
     var currentLocation = CLLocationCoordinate2D(latitude: 59.939095, longitude: 30.315868)
     
@@ -21,7 +34,11 @@ class ViewController: UIViewController {
         setupLocationManager()
         setupCamera(location: currentLocation)
         updateCurrentLocation(self)
-        constraints()
+        setupConstraints()
+    }
+    
+    func configure(viewModel: MapViewModel) {
+        self.viewModel = viewModel
     }
     
     //MARK: - User Actions
@@ -34,6 +51,49 @@ class ViewController: UIViewController {
         currentLocation = location
         updateCamera(location: location)
         createMark(location: location)
+    }
+    
+    @objc
+    func createPath(_ sender: Any) {
+        setupRoute()
+        locationManager?.startUpdatingLocation()
+    }
+    
+    @objc
+    func stopCreatingPath(_ sender: Any) {
+        locationManager?.stopUpdatingLocation()
+        RealmService.shared.deleteAllLocations()
+        guard let pointsCount = routePath?.count() else { return }
+        var locations = Array<Location>()
+        for i in 0..<pointsCount {
+            guard let point = routePath?.coordinate(at: i) else { return }
+            let location = Location()
+            location.longitude = point.longitude
+            location.latitude = point.latitude
+            location._number = Int(i)
+            locations.append(location)
+        }
+        RealmService.shared.saveList(locations)
+        mapView.clear()
+    }
+    
+    @objc
+    func loadPreviousRoute(_ sender: Any) {
+        let newRoute = GMSPolyline()
+        let newPath = GMSMutablePath()
+        newRoute.strokeColor = .blue
+        newRoute.strokeWidth = 10.0
+        locationManager?.stopUpdatingLocation()
+        let locations = RealmService.shared.loadListOfLocation()
+        routePath?.removeAllCoordinates()
+        for i in 0..<locations.count {
+            let coordinate = CLLocationCoordinate2D(latitude: locations[i].latitude, longitude: locations[i].longitude)
+            newPath.insert(coordinate, at: UInt(locations[i]._number))
+        }
+        newRoute.path = newPath
+        newRoute.map = mapView
+        let bounds = GMSCoordinateBounds(path: newPath)
+        mapView.animate(with: GMSCameraUpdate.fit(bounds))
     }
     
     //MARK: - View Actions
@@ -51,7 +111,7 @@ class ViewController: UIViewController {
         mapView.camera = GMSCameraPosition.camera(withTarget: location, zoom:10)
     }
     
-    private func constraints() {
+    private func setupConstraints() {
         mapView.translatesAutoresizingMaskIntoConstraints = false
         let constraints = [
             mapView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -65,26 +125,52 @@ class ViewController: UIViewController {
     private func setupViews() {
         mapView = GMSMapView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height - 50))
         view.addSubview(mapView)
-        
+        // navigation items
+        let updateLocationItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(updateCurrentLocation(_:)))
+        let createPathItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(createPath(_:)))
+        let stopCreatePathItem = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: #selector(stopCreatingPath(_ :)))
+        let loadRouteItem = UIBarButtonItem(title: "Load", style: UIBarButtonItem.Style.plain, target: self, action: #selector(loadPreviousRoute(_:)))
         // navigationBar
-        let navigationItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(updateCurrentLocation(_:)))
         navigationController?.navigationBar.backgroundColor = .white
         navigationController?.navigationBar.isTranslucent = false
-        self.navigationItem.rightBarButtonItem = navigationItem
+        self.navigationItem.rightBarButtonItems = [updateLocationItem, loadRouteItem]
+        self.navigationItem.leftBarButtonItems = [createPathItem, stopCreatePathItem]
     }
     
     private func setupLocationManager() {
         locationManager = CLLocationManager()
-        locationManager?.requestWhenInUseAuthorization()
+        locationManager?.allowsBackgroundLocationUpdates = true
+        locationManager?.pausesLocationUpdatesAutomatically = false
+        locationManager?.startMonitoringSignificantLocationChanges()
+        locationManager?.requestAlwaysAuthorization()
         locationManager?.delegate = self
     }
     
+    private func setupRoute() {
+        mapView.clear()
+        route?.map = nil
+        route = GMSPolyline()
+        route?.strokeColor = .red
+        route?.strokeWidth = 10.0
+        routePath = GMSMutablePath()
+        route?.map = mapView
+    }
+    
+    private func removeRoute() {
+        route?.map = nil
+        routePath?.removeAllCoordinates()
+    }
+    
 }
-
+//MARK: - CLLocationManagerDelegate
 extension ViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print(locations.first as Any)
+            guard let location = locations.last else { return }
+            routePath?.add(location.coordinate)
+            route?.path = routePath
+            let position = GMSCameraPosition.camera(withTarget: location.coordinate, zoom: 15)
+            mapView.animate(to: position)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
